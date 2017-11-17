@@ -11,6 +11,14 @@ export const decks = (state = defaultDecks, action) => {
         ...state,
         deckList: action.decks
       }
+    case DeckActions.ADD_DECK:
+      return {
+        ...state,
+        deckList: {
+          ...state.deckList,
+          [action.key]: action.deck
+        }
+      }
     default:
       return state
   }

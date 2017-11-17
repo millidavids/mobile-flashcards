@@ -18,10 +18,10 @@ class DeckList extends Component {
   render = () => {
     return (
       <View style={styles.container}>
-        <Text>DeckList</Text>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckForm')}>
-          <Text>{JSON.stringify(this.props.deckList)}</Text>
+          <Text>Create Deck</Text>
         </TouchableOpacity>
+        <Text>{JSON.stringify(this.props.deckList)}</Text>
       </View>
     )
   }
