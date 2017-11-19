@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { asyncReceiveDecks } from '../actions/decks'
+import { asyncReceiveDecks, asyncClearDecks } from '../actions/decks'
 
 class DeckList extends Component {
   static navigationOptions = () => {
@@ -21,6 +21,9 @@ class DeckList extends Component {
         <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckForm')}>
           <Text>Create Deck</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.clearDecks()}>
+          <Text>Clear Decks</Text>
+        </TouchableOpacity>
         <Text>{JSON.stringify(this.props.deckList)}</Text>
       </View>
     )
@@ -35,7 +38,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getDecks: () => dispatch(asyncReceiveDecks())
+    getDecks: () => dispatch(asyncReceiveDecks()),
+    clearDecks: () => dispatch(asyncClearDecks())
   }
 }
 
