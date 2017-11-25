@@ -3,25 +3,6 @@ import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { asyncAddDeck } from '../actions/decks'
 
-const styles = StyleSheet.create({
-  deckForm: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  inputLabel: {
-    fontSize: 20
-  },
-  inputField: {
-    height: 40,
-    width: '100%',
-    textAlign: 'center',
-    borderBottomColor: 'gray',
-    borderBottomWidth: StyleSheet.hairlineWidth
-  }
-})
-
 class DeckForm extends Component {
   constructor(props) {
     super(props)
@@ -52,6 +33,25 @@ class DeckForm extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  deckForm: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  inputLabel: {
+    fontSize: 20
+  },
+  inputField: {
+    height: 40,
+    width: '100%',
+    textAlign: 'center',
+    borderBottomColor: 'gray',
+    borderBottomWidth: StyleSheet.hairlineWidth
+  }
+})
 
 const mapStateToProps = (state) => {
   return {

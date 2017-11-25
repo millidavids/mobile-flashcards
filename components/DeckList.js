@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { asyncReceiveDecks, asyncClearDecks } from '../actions/decks'
+import DeckCard, { styles as deckCardStyles } from './DeckCard'
 
 class DeckList extends Component {
   static navigationOptions = () => {
@@ -9,30 +10,44 @@ class DeckList extends Component {
       title: 'Deck List'
     }
   }
-  state = {
-    value: {}
-  }
-  componentWillMount = () => {
-    this.props.getDecks()
-  }
   render = () => {
+    console.log(this.props.deckMap)
+    const deckCards = Object.keys(this.props.deckMap).map(key => {
+      const deck = this.props.deckMap[key]
+      return <DeckCard key={deck.cardsId} cardId={deck.cardsId} name={deck.name}/>
+    })
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckForm')}>
+        {deckCards}
+        <TouchableOpacity 
+          style={deckCardStyles.clickableCard} 
+          onPress={() => this.props.navigation.navigate('DeckForm')}
+        >
           <Text>Create Deck</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.clearDecks()}>
+        <TouchableOpacity
+          style={deckCardStyles.clickableCard} 
+          onPress={() => this.props.clearDecks()}
+        >
           <Text>Clear Decks</Text>
         </TouchableOpacity>
-        <Text>{JSON.stringify(this.props.deckList)}</Text>
       </View>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  }
+})
+
 const mapStateToProps = (state) => {
   return {
-    deckList: state.decks.deckList
+    deckMap: state.decks.deckMap
   }
 }
 
@@ -42,13 +57,6 @@ const mapDispatchToProps = (dispatch) => {
     clearDecks: () => dispatch(asyncClearDecks())
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: 'flex',
-  }
-})
 
 export default connect(
   mapStateToProps,

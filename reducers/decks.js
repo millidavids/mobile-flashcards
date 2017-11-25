@@ -1,7 +1,7 @@
 import * as DeckActions from '../actions/decks'
 
 const defaultDecks = {
-  deckList: {}
+  deckMap: {}
 }
 
 export const decks = (state = defaultDecks, action) => {
@@ -9,13 +9,13 @@ export const decks = (state = defaultDecks, action) => {
     case DeckActions.RECEIVE_DECKS:
       return {
         ...state,
-        deckList: action.decks
+        deckMap: action.decks || {}
       }
     case DeckActions.ADD_DECK:
       return {
         ...state,
-        deckList: {
-          ...state.deckList,
+        deckMap: {
+          ...state.deckMap,
           [action.key]: action.deck
         }
       }
