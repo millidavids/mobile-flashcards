@@ -8,6 +8,7 @@ import { gray, white } from './utils/colors'
 import { asyncReceiveDecks } from './actions/decks'
 import DeckList from './components/DeckList'
 import DeckForm from './components/DeckForm'
+import Deck from './components/Deck'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import reducer from './reducers'
@@ -49,6 +50,16 @@ const Stack = StackNavigator({
   },
   DeckForm: {
     screen: DeckForm,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: gray,
+        padding: 0
+      }
+    }
+  },
+  Deck: {
+    screen: Deck,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

@@ -11,17 +11,23 @@ class DeckList extends Component {
     }
   }
   render = () => {
-    console.log(this.props.deckMap)
+    const { navigate } = this.props.navigation
     const deckCards = Object.keys(this.props.deckMap).map(key => {
       const deck = this.props.deckMap[key]
-      return <DeckCard key={deck.cardsId} cardId={deck.cardsId} name={deck.name}/>
+      return (
+        <DeckCard 
+          onDeckNav={() => navigate('Deck', {id: key, name: deck.name})} 
+          key={deck.cardsId} 
+          cardId={deck.cardsId} 
+          name={deck.name}/>
+      )
     })
     return (
       <View style={styles.container}>
         {deckCards}
         <TouchableOpacity 
           style={deckCardStyles.clickableCard} 
-          onPress={() => this.props.navigation.navigate('DeckForm')}
+          onPress={() => navigate('DeckForm')}
         >
           <Text>Create Deck</Text>
         </TouchableOpacity>

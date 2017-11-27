@@ -3,29 +3,27 @@ import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 class Deck extends Component {
-  static navigationOptions = () => {
-    return {
-      title: 'Deck'
-    }
-  }
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: navigation.state.params.name
+  })
   render = () => {
     return (
       <View style={styles.deck}>
+        <Text>{this.props.navigation.state.params.id}</Text>
       </View>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps.navigation.state.params.id)
   return {
-    Deck: state.decks.Deck
+    // deck: state.decks.deck[ownProps.navigation.state.params.id]
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getDecks: () => dispatch(asyncReceiveDecks()),
-    clearDecks: () => dispatch(asyncClearDecks())
   }
 }
 

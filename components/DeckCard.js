@@ -1,11 +1,14 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { StackNavigator } from 'react-navigation'
 import { lightGray } from '../utils/colors'
 
 export default DeckCard = (props) => {
   return (
     <View style={styles.deckCard}>
-      <TouchableOpacity style={styles.clickableCard} onPress={() => console.log(props.name)}>
+      <TouchableOpacity 
+        style={styles.clickableCard} 
+        onPress={() => props.onDeckNav()}>
         <Text>{props.name}</Text>
       </TouchableOpacity>
     </View>
